@@ -31,6 +31,7 @@ def crawl_data():
     page = 1
 
     while True:
+        # 1. vào trang web chọn Hà Nội
         url = f"https://alonhadat.com.vn/nha-dat/can-ban/mat-bang/1/ha-noi/trang--{page}.html"
         print(f"Đang thu thập trang {page}: {url}")
         driver.get(url)
@@ -45,7 +46,7 @@ def crawl_data():
         listings = driver.find_elements(By.CSS_SELECTOR, ".content-item.item")
         if not listings:
             break
-
+        # 2. Lấy tất cả dữ liệu(Tiêu đề, Mô tả, Địa chỉ, Diện tích, Giá) hiển thị ở bài viết.
         for listing in listings:
             try:
                 title = listing.find_element(By.CSS_SELECTOR, ".ct_title").text.strip()
@@ -58,13 +59,11 @@ def crawl_data():
             except Exception as e:
                 print(f"Lỗi lấy tin: {e}")
                 continue
-
-
         page += 1
 
     driver.quit()
 
-    # Lưu file
+    # 3. Lưu dữ liệu vào file Excel và CSV
     today = datetime.datetime.now().strftime("%Y-%m-%d")
     df = pd.DataFrame(data, columns=["Tiêu đề", "Mô tả", "Diện tích", "Giá", "Địa chỉ"])
 
@@ -78,8 +77,8 @@ def crawl_data():
     print(f"Đã lưu file CSV: {csv_file}")
 
  
-# 7. Lên lịch chạy lúc 6h sáng hàng ngày
-# schedule.every().day.at("12:15").do(crawl_data)
+# 4. Lên lịch chạy lúc 6h sáng hàng ngày
+# schedule.every().day.at("06:00").do(crawl_data)
 crawl_data()
 
 print("Đang chờ đến 6h sáng mỗi ngày để chạy....")

@@ -15,8 +15,8 @@ Dự án này sử dụng Python và Selenium để tự động thu thập thô
 ### 1. Clone repository
 
 ```bash
-git clone https://github.com/tenban/alonhadat-hanoi-scraper.git
-cd alonhadat-hanoi-scraper
+git clone https://github.com/vantung1606/BaiTapLon.git
+cd BaiTapLon
 ```
 
 ### 2. Cài đặt thư viện cần thiết
@@ -38,7 +38,7 @@ schedule
 ### 3. Chạy script thủ công
 
 ```bash
-python main.py
+python alonhadat.py
 ```
 
 File Excel/CSV sẽ được tạo theo định dạng:  
@@ -50,7 +50,7 @@ File Excel/CSV sẽ được tạo theo định dạng:
 Script có sử dụng thư viện `schedule` để tự động chạy mỗi ngày lúc 6h sáng. Để script luôn chạy:
 
 ```bash
-python main.py
+python alonhadat.py
 ```
 
 > **Lưu ý**: Bạn cần giữ script này luôn hoạt động (chạy liên tục) hoặc cấu hình `cron` (Linux/macOS) hoặc Task Scheduler (Windows) để chạy script mỗi ngày.
