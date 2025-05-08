@@ -78,9 +78,7 @@ def crawl_data():
 
  
 # 4. Lên lịch chạy lúc 6h sáng hàng ngày
-# schedule.every().day.at("06:00").do(crawl_data)
-crawl_data()
-
+schedule.every().day.at("06:00").do(crawl_data)
 print("Đang chờ đến 6h sáng mỗi ngày để chạy....")
 while True:
     schedule.run_pending()
